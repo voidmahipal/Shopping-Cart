@@ -4,10 +4,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
 import { Home } from './components/Home'
+import { Shop } from './components/Shop'
+import { Cart } from './components/Cart'
 
 function App() {
+
+  const [cart,setCart] = useState([]);
+
   return <>
-    <Home/>
+    <Home cart={cart}/>
+    <Shop setCart={setCart}/>
+    <Cart cart={cart} setCart={setCart}/>
   </>
 }
 

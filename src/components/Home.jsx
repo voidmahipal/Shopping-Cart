@@ -1,11 +1,11 @@
-function Home() {
+function Home({cart}) {
     return <>
         <header>
             <p>SHOP.CO</p>
             <nav>
                 <a href="/">Home</a>
                 <a href="/">Shop</a>
-                <a href="/">Card</a>
+                <a href="/">Cart({cart.length})</a>
             </nav>
         </header>
         <main>
