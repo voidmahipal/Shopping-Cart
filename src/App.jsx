@@ -1,20 +1,22 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
-import { Home } from './components/Home'
-import { Shop } from './components/Shop'
-import { Cart } from './components/Cart'
+import { Link,Outlet } from 'react-router';
 
 function App() {
 
+  const [products,setProducts] = useState([]);
   const [cart,setCart] = useState([]);
 
   return <>
-    <Home cart={cart}/>
-    <Shop setCart={setCart}/>
-    <Cart cart={cart} setCart={setCart}/>
+    <header>
+      <h1>SHOP.CO</h1>
+      <nav>
+        <Link to="shop">Shop</Link>
+        <Link to="cart">Cart({cart.length})</Link>
+        <Link to="/">Home</Link>
+      </nav>
+    </header>
+    <Outlet context={{products,setProducts,cart,setCart}}/>
   </>
 }
 

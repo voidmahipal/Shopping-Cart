@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import { Card } from "./Card"; 
+import { useOutletContext } from "react-router";
 function extractUsefulInfo(dataObj) {
 
     return {
@@ -10,9 +11,9 @@ function extractUsefulInfo(dataObj) {
         quantity:1,
     }
 }
-function Shop({setCart}) {
+function Shop() {
 
-    const [products,setProducts] = useState([]);
+    const {cart,setCart,products,setProducts} = useOutletContext();
     const [isLoading,setIsLoading] = useState(true);
 
     useEffect(()=>{
@@ -29,7 +30,6 @@ function Shop({setCart}) {
         Promise.all(promises).then((productList)=>{
             setProducts(productList);
             setIsLoading(false);
-            console.log(productList);
         })
         .catch((e)=>{
             setIsLoading(false);
@@ -41,7 +41,7 @@ function Shop({setCart}) {
     return <>
         <ul>
             {products.map((product)=>{
-                return <Card key={product.id} product={product} setProducts={setProducts} setCart={setCart}/>
+                return <Card key={product.id} product={product} setProducts={setProducts} cart={cart} setCart={setCart}/>
             })}
         </ul>
     </>
