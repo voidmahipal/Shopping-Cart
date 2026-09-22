@@ -37,14 +37,44 @@ function Shop() {
         });
     },[]);
 
-    if(isLoading) return <p>Loading...</p>
-    return <>
-        <ul>
-            {products.map((product)=>{
-                return <Card key={product.id} product={product} setProducts={setProducts} cart={cart} setCart={setCart}/>
-            })}
-        </ul>
-    </>
+    if (isLoading) {
+        return (
+            <main className="shop-page">
+                <div className="loader"></div>
+                <p>Loading products...</p>
+            </main>
+        )
+    }
+    return (
+        <main className="shop-page">
+
+            <div className="shop-heading">
+                <div>
+                    <p className="section-eyebrow">OUR COLLECTION</p>
+                    <h1>Shop</h1>
+                </div>
+
+                <p className="product-count">
+                    {products.length} products
+                </p>
+            </div>
+
+            <ul className="product-grid">
+                {products.map((product) => {
+                    return (
+                        <Card
+                            key={product.id}
+                            product={product}
+                            setProducts={setProducts}
+                            cart={cart}
+                            setCart={setCart}
+                        />
+                    )
+                })}
+            </ul>
+
+        </main>
+    )
 }
 
 export {Shop};

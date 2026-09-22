@@ -1,23 +1,29 @@
 import { useState } from 'react'
 import './App.css'
-import { Link,Outlet } from 'react-router';
+import { Link, Outlet } from 'react-router';
 
 function App() {
 
-  const [products,setProducts] = useState([]);
-  const [cart,setCart] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
-  return <>
-    <header>
-      <h1>SHOP.CO</h1>
-      <nav>
-        <Link to="shop">Shop</Link>
-        <Link to="cart">Cart({cart.length})</Link>
-        <Link to="/">Home</Link>
-      </nav>
-    </header>
-    <Outlet context={{products,setProducts,cart,setCart}}/>
-  </>
+  return (
+    <>
+      <header className="navbar">
+        <Link to="/" className="logo">SHOP.CO</Link>
+
+        <nav className="nav-links">
+          <Link to="/">Home</Link>
+          <Link to="/shop">Shop</Link>
+          <Link to="/cart" className="cart-link">
+            Cart <span>{cart.length}</span>
+          </Link>
+        </nav>
+      </header>
+
+      <Outlet context={{ products, setProducts, cart, setCart }} />
+    </>
+  )
 }
 
 export default App
